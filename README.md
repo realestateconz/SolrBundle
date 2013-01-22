@@ -30,7 +30,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Realestate\\SolrBundle\RealestateCoNz\SolrBundle(),
+        new Realestate\SolrBundle\RealestateSolrBundle(),
     );
 }
 ```
