@@ -1,0 +1,36 @@
+{
+    "name": "realestateconz/solr-bundle",
+    "type": "symfony-bundle",
+    "description": "Solr ODM Bundle",
+    "keywords": ["solr", "odm"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ken Golovin",
+            "email": "ken@realestate.co.nz"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "https://github.com/realestateconz/SolrBundle/contributors"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.1,<2.3-dev",
+        "symfony/form": ">=2.1,<2.3-dev"
+    },
+    "require-dev": {
+        "symfony/finder": "2.*",
+        "doctrine/orm": "2.*",
+        "doctrine/doctrine-bundle": "1.*",
+        "doctrine/mongodb-odm-bundle": "*",
+        "propel/propel-bundle": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Realestate\CoNz\\SolrBundle": ""
+        }
+    },
+    "target-dir": "Realestate\CoNz/SolrBundle"
+}
