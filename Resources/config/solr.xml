@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="solr.solarium.client.class">Realestate\SolrBundle\Bridge\Solarium\Client</parameter>
+        <parameter key="solr.solarium.connection.class">\Realestate\SolrBundle\Bridge\Solarium\Connection</parameter>
+        <parameter key="solr.solarium.document_manager.class">Realestate\SolrBundle\ODM\DocumentManager</parameter>
+        
+        <!-- cache -->
+        <parameter key="solr.odm.cache.array.class">Doctrine\Common\Cache\ArrayCache</parameter>
+        <parameter key="solr.odm.cache.apc.class">Doctrine\Common\Cache\ApcCache</parameter>
+        <parameter key="solr.odm.cache.zend_data.class">Doctrine\Common\Cache\ZendDataCache</parameter>
+        <parameter key="solr.odm.cache.xcache.class">Doctrine\Common\Cache\XcacheCache</parameter>
+        <parameter key="solr.odm.cache.redis.class">Snc\RedisBundle\Doctrine\Cache\RedisCache</parameter>
+        
+        <!-- metadata -->
+        <parameter key="solr.odm.metadata.annotation.class">Realestate\SolrBundle\ODM\Mapping\Driver\AnnotationDriver</parameter>
+    </parameters>
+
+    <services>
+        
+        <service id="solr" class="Realestate\SolrBundle\Registry">
+            <argument type="service" id="service_container" />
+            <argument key="connections">%solr.solarium.connections%</argument>
+            <argument key="default_connection">%solr.solarium.default_connection%</argument>
+        </service>
+        
+        <service id="solr.solarium.connection_factory" class="Realestate\SolrBundle\Connection\Factory">
+            <argument>%solr.solarium.connection.class%</argument>            
+        </service>
+        
+        <service id="solr.adapter.orm_solarium" class="Realestate\SolrBundle\ODM\Adapter\ORM">
+            <argument type="service" id="service_container" />
+        </service>
+        
+        <service id="solr.odm.configuration" class="Realestate\SolrBundle\ODM\Configuration">
+            <call method="setMetadataCacheImpl"><argument type="service" id ="solr.odm.metadata.cache" /></call>
+            <call method="setMetadataDriverImpl"><argument type="service" id ="solr.odm.metadata.driver" /></call>
+        </service>
+        
+        <service id="solr.odm.metadata.cache" class="%solr.metadata_cache_driver.class%"></service>
+        
+        <service id="solr.odm.metadata.driver" class="%solr.odm.metadata.annotation.class%">
+            <argument type="service" id="solr.odm.metadata.reader" />        
+        </service>
+        
+        <service id="solr.odm.metadata.reader" class="Doctrine\Common\Annotations\AnnotationReader"></service>
+        
+        <service id="solr.solarium.connection" class="Realestate\SolrBundle\Bridge\Solarium\Connection" factory-service="solr.solarium.connection_factory" factory-method="createConnection" abstract="true" />
+        
+        
+        <service id="solr.solarium.document_manager" class="%solr.solarium.document_manager.class%">
+            <argument type="service" id="solr.solarium.default_connection" />
+            <argument type="service" id="solr.odm.configuration" />
+        </service>
+
+    </services>
+</container>
