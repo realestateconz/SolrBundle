@@ -1,5 +1,7 @@
 SolrBundle - Object Document Mapper bundle for Solr
 ==========
+## Introduction
+SolrBundle provides ODM support for solr
 
 ## Installation
 
@@ -32,4 +34,22 @@ public function registerBundles()
     );
 }
 ```
+
+
+### Step 3: Configure
+
+``` yaml
+# app/config/config.yml
+realestate_solr:
+    solarium:
+        connection:
+            adapter: Realestate\SolrBundle\Bridge\Solarium\Adapter\ZendHttp
+            adapteroptions:
+                host: localhost
+                port: 8080
+                path: /solr
+                timeout: 10
+                adapter: Zend_Http_Client_Adapter_Curl
+```
+
 
