@@ -13,10 +13,8 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
-        "symfony/framework-bundle": ">=2.1,<2.3-dev",
-        "symfony/form": ">=2.1,<2.3-dev",
-		"solarium/solarium": "3.0.*",
-		"doctrine/common": "2.2.*"
+        "solarium/solarium": "3.0.*",
+        "doctrine/common": "2.2.*"
     },
     "autoload": {
         "psr-0": {
