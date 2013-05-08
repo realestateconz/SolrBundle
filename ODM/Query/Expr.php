@@ -54,7 +54,7 @@ class Expr
         $expr = '';
         
         if(count($y) > 0) {
-            $expr = $x . ':(' . implode(' OR ', $y) . ')';
+            $expr = $x . ':(' . implode(' OR ', $this->escape($y)) . ')';
         }
         
 
