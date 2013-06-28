@@ -12,7 +12,7 @@ use Doctrine\Common\Annotations\Annotation;
 
 /**
  * @Annotation
- * @Target("PROPERTY")
+ * @Target("CLASS")
  */
 final class Document extends Annotation
 {

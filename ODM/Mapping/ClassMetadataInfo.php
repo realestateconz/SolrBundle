@@ -358,4 +358,50 @@ class ClassMetadataInfo implements \Doctrine\Common\Persistence\Mapping\ClassMet
         // @todo
         return null;
     }
+    
+    /**
+     * Returns an array of identifier field names numerically indexed.
+     *
+     * @return array
+     */
+    public function getIdentifierFieldNames()
+    {
+        return array($this->getIdentifier());
+    }
+    
+    /**
+     * Checks if the association is the inverse side of a bidirectional association
+     *
+     * @param string $assocName
+     * @return boolean
+     */
+    public function isAssociationInverseSide($assocName)
+    {
+        return false;
+    }
+    
+    /**
+     * Returns the target field of the owning side of the association
+     *
+     * @param string $assocName
+     * @return string
+     */
+    public function getAssociationMappedByTargetField($assocName)
+    {
+        return null;
+    }
+    
+    /**
+     * Return the identifier of this object as an array with field name as key.
+     *
+     * Has to return an empty array if no identifier isset.
+     *
+     * @param object $object
+     * @return array
+     */
+    public function getIdentifierValues($object)
+    {
+        // @todo
+        return array();
+    }
 }
