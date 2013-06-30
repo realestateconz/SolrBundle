@@ -50,4 +50,9 @@ class Select extends \Solarium_Result_Select
         
         return $ids;
     }
+
+	// TODO
+	public function getFacets() {
+		return $this->getFacetSet();
+	}
 }
