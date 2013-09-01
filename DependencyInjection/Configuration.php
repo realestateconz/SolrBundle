@@ -32,7 +32,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
             
-            ->scalarNode('metadata_cache_driver')->defaultValue('array')->end()
             ->arrayNode('solarium')
              
                 ->children()
