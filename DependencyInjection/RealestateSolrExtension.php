@@ -46,7 +46,8 @@ class RealestateSolrExtension extends Extension
         }
         
         if(isset($config['metadata_cache_driver'])) {
-            $container->setParameter('solr.metadata_cache_driver.class', $container->getParameter('solr.odm.cache.' . $config['metadata_cache_driver'] . '.class') );
+            //$container->setParameter('solr.metadata_cache_driver.class', $container->getParameter('solr.odm.cache.' . $config['metadata_cache_driver'] . '.class') );
+            $container->setParameter('solr.metadata_cache_driver.class', $container->getParameter('doctrine.orm.cache.' . $config['metadata_cache_driver'] . '.class') );
         } else {
             $container->setParameter('solr.metadata_cache_driver.class', $container->getParameter('solr.odm.cache.array.class') );
         }

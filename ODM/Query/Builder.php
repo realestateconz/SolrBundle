@@ -250,8 +250,10 @@ class Builder
 
 			$dismax = $query->getDisMax();
 
-			$dismax->setPhraseFields('search_address search_extra description');
-			$dismax->setQueryFields('listing_no^10 search_address^5 search_extra description');
+			$dismax->setPhraseFields('title^2 search_address^3 search_extra^3 description');
+			$dismax->setQueryFields('title search_address search_extra description');
+			#$dismax->setPhraseFields('search_address search_extra description');
+			#$dismax->setQueryFields('listing_no^10 search_address^5 search_extra description');
 
 			// seems like a hack but...
 			$this->_queryParts['query'] = $this->_disMaxPart ;
