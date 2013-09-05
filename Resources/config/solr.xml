@@ -14,7 +14,10 @@
         <parameter key="solr.odm.cache.apc.class">Doctrine\Common\Cache\ApcCache</parameter>
         <parameter key="solr.odm.cache.zend_data.class">Doctrine\Common\Cache\ZendDataCache</parameter>
         <parameter key="solr.odm.cache.xcache.class">Doctrine\Common\Cache\XcacheCache</parameter>
-        <parameter key="solr.odm.cache.redis.class">Snc\RedisBundle\Doctrine\Cache\RedisCache</parameter>
+        <parameter key="solr.odm.cache.redis.class">Doctrine\Common\Cache\RedisCache</parameter>
+        <parameter key="solr.odm.cache.redis.host">localhost</parameter>
+        <parameter key="solr.odm.cache.redis.port">6379</parameter>
+        <parameter key="solr.odm.cache.redis.redis_instance.class">Redis</parameter>
         
         <!-- metadata -->
         <parameter key="solr.odm.metadata.annotation.class">Realestate\SolrBundle\ODM\Mapping\Driver\AnnotationDriver</parameter>
@@ -37,11 +40,9 @@
         </service>
         
         <service id="solr.odm.configuration" class="Realestate\SolrBundle\ODM\Configuration">
-            <call method="setMetadataCacheImpl"><argument type="service" id ="solr.odm.metadata.cache" /></call>
+            <call method="setMetadataCacheImpl"><argument type="service" id ="doctrine.orm.default_metadata_cache" /></call>
             <call method="setMetadataDriverImpl"><argument type="service" id ="solr.odm.metadata.driver" /></call>
         </service>
-        
-        <service id="solr.odm.metadata.cache" class="%solr.metadata_cache_driver.class%"></service>
         
         <service id="solr.odm.metadata.driver" class="%solr.odm.metadata.annotation.class%">
             <argument type="service" id="solr.odm.metadata.reader" />        

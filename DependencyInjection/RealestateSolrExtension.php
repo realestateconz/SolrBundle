@@ -26,13 +26,9 @@ class RealestateSolrExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
         
-        //var_dump($config);exit;
-        
         $this->loadDefaults($container);
         
-
         $container->setParameter('solr.solarium.default_connection', isset($config['solarium']['default_connection']) ? $config['solarium']['default_connection'] : 'default');
-        
         
         $connections = array();
         
@@ -51,9 +47,6 @@ class RealestateSolrExtension extends Extension
         } else {
             $container->setParameter('solr.metadata_cache_driver.class', $container->getParameter('solr.odm.cache.array.class') );
         }
-        
-        
-        
     }
     
     
