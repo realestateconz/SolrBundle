@@ -42,7 +42,7 @@ class DocumentManager /*implements ObjectManager*/
     /**
      * The UnitOfWork used to coordinate object-level transactions.
      *
-     * @var Solarium_Query_Update
+     * @var Solarium\Query\Update
      */
     private $unitOfWork;
 

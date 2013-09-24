@@ -8,7 +8,7 @@
 namespace Realestate\SolrBundle\Bridge\Solarium;
 
 /**
- * A wrapper around Solarium_Client
+ * A wrapper around Solarium\Client
  *
  */
 class Connection
@@ -55,7 +55,7 @@ class Connection
     /**
      * Gets the parameters used during instantiation.
      *
-     * @return Solarium_Client
+     * @return Solarium\Client
      */
     public function getClient()
     {

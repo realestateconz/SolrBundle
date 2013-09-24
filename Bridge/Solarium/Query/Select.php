@@ -7,7 +7,7 @@
 
 namespace Realestate\SolrBundle\Bridge\Solarium\Query;
 
-class Select extends \Solarium_Query_Select
+class Select extends \Solarium\Query\Select
 {
     
     /**
@@ -18,7 +18,7 @@ class Select extends \Solarium_Query_Select
     protected $_options = array(
         'handler'       => 'select',
         'resultclass'   => '\Realestate\SolrBundle\Bridge\Solarium\Result\Select',
-        'documentclass' => 'Solarium_Document_ReadOnly',       
+        'documentclass' => '\Solarium\Document\ReadOnly',       
         'query'         => '*:*',
         'start'         => 0,
         'rows'          => 100,

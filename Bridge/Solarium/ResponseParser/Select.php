@@ -7,15 +7,13 @@
 
 namespace Realestate\SolrBundle\Bridge\Solarium\ResponseParser;
 
-use Solarium_Client_ResponseParser;
-
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Parse solr select response data
  *
  */
-class Select extends Solarium_Client_ResponseParser
+class Select extends Solarium\Client\ResponseParser
 {
 
     

@@ -7,8 +7,6 @@
 
 namespace Realestate\SolrBundle\ODM\Adapter;
 
-use Solarium_Client_ResponseParser;
-
 /**
  * Converts ORM entity to ODM entity
  *

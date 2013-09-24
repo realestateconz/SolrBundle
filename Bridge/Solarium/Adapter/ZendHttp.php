@@ -13,7 +13,7 @@ use Realestate\SolrBundle\Bridge\Solarium\Client\Request;
  * Adapter that uses a Zend_Http_Client
  *
  */
-class ZendHttp extends \Solarium_Client_Adapter_ZendHttp 
+class ZendHttp extends \Solarium\Client\Adapter\ZendHttp 
 {
 
     /**
@@ -58,7 +58,7 @@ class ZendHttp extends \Solarium_Client_Adapter_ZendHttp
         // this is used because getHeaders doesn't return the HTTP header...
         $headers = explode("\n", $response->getHeadersAsString());
 
-        return new \Solarium_Client_Response($data, $headers);
+        return new \Solarium\Client\Response($data, $headers);
     }
     
     

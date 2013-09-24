@@ -7,7 +7,7 @@
 
 namespace Realestate\SolrBundle\Bridge\Solarium\Result;
 
-class Select extends \Solarium_Result_Select
+class Select extends \Solarium\Result\Select
 {
 
     

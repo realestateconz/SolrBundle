@@ -9,7 +9,7 @@ namespace Realestate\SolrBundle\Bridge\Solarium\RequestBuilder;
 
 use Realestate\SolrBundle\Bridge\Solarium\Client\Request;
 
-class Update extends \Solarium_Client_RequestBuilder_Update
+class Update extends \Solarium\Client\RequestBuilder\Update
 {
     protected $dm;
     
@@ -21,7 +21,7 @@ class Update extends \Solarium_Client_RequestBuilder_Update
     /**
      * Build request for an update query
      *
-     * @param Solarium_Query_Update $query
+     * @param Solarium\Query\Update $query
      * @return \Realestate\SolrBundle\Bridge\Solarium\Client\Request
      */
     public function build($query)
@@ -40,7 +40,7 @@ class Update extends \Solarium_Client_RequestBuilder_Update
     /**
      * Build XML for an add command
      *
-     * @param Solarium_Query_Update_Command_Add $command
+     * @param Solarium\Query\Update\Command\Add $command
      * @return string
      */
     public function buildAddXml($command)

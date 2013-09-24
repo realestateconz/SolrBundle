@@ -7,12 +7,10 @@
 
 namespace Realestate\SolrBundle\Tests\Mocks;
 
-use Solarium_Result;
-
 /**
  * Mock Solarium result
  */
-class SolariumResultMock extends Solarium_Result
+class SolariumResultMock extends \Solarium\Result
 {
     
     public function __construct()

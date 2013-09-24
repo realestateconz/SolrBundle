@@ -15,13 +15,13 @@ use Realestate\SolrBundle\Bridge\Solarium\Client\Request;
  * @package Solarium
  * @subpackage Client
  */
-class Select extends \Solarium_Client_RequestBuilder_Select
+class Select extends \Solarium\Client\RequestBuilder\Select
 {
 
     /**
      * Build request for a select query
      *
-     * @param Solarium_Query_Select $query
+     * @param Solarium\Query\Select $query
      * @return Realestate\SolrBundle\Bridge\Solarium\Client\Request
      */
     public function build($query)

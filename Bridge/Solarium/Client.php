@@ -9,7 +9,7 @@ namespace Realestate\SolrBundle\Bridge\Solarium;
 
 use Realestate\SolrBundle\Bridge\Solarium\Client\Request;
 
-class Client extends \Solarium_Client
+class Client extends \Solarium\Client
 {
     protected $dm;
     
@@ -22,25 +22,23 @@ class Client extends \Solarium_Client
     protected $_queryTypes = array(
         self::QUERYTYPE_SELECT => array(
             'query'          => '\Realestate\SolrBundle\Bridge\Solarium\Query\Select',
-            //'query'          => '\Solarium_Query_Select',
-            //'requestbuilder' => '\Solarium_Client_RequestBuilder_Select',
             'requestbuilder' => '\Realestate\SolrBundle\Bridge\Solarium\RequestBuilder\Select',
             'responseparser' => '\Realestate\SolrBundle\Bridge\Solarium\ResponseParser\Select'
         ),
         self::QUERYTYPE_UPDATE => array(
             'query'          => '\Realestate\SolrBundle\Bridge\Solarium\Query\Update',
             'requestbuilder' => '\Realestate\SolrBundle\Bridge\Solarium\RequestBuilder\Update',
-            'responseparser' => '\Solarium_Client_ResponseParser_Update'
+            'responseparser' => '\Solarium\Client\ResponseParser\Update'
         ),
         self::QUERYTYPE_PING => array(
-            'query'          => '\Solarium_Query_Ping',
-            'requestbuilder' => '\Solarium_Client_RequestBuilder_Ping',
-            'responseparser' => '\Solarium_Client_ResponseParser_Ping'
+            'query'          => '\Solarium\Query\Ping',
+            'requestbuilder' => '\Solarium\Client\RequestBuilder\Ping',
+            'responseparser' => '\Solarium\Client\ResponseParser\Ping'
         ),
         self::QUERYTYPE_MORELIKETHIS => array(
-            'query'           => '\Solarium_Query_MoreLikeThis',
-            'requestbuilder'  => '\Solarium_Client_RequestBuilder_MoreLikeThis',
-            'responseparser'  => '\Solarium_Client_ResponseParser_MoreLikeThis'
+            'query'           => '\Solarium\Query\MoreLikeThis',
+            'requestbuilder'  => '\Solarium\Client\RequestBuilder\MoreLikeThis',
+            'responseparser'  => '\Solarium\Client\ResponseParser\MoreLikeThis'
         ),
     );
 
@@ -57,8 +55,8 @@ class Client extends \Solarium_Client
     /**
      * Creates a request based on a query instance
      *
-     * @param Solarium_Query $query
-     * @return Solarium_Client_Request
+     * @param Solarium\Query $query
+     * @return Solarium\Client\Request
      */
     public function createRequest($query)
     {
@@ -86,7 +84,7 @@ class Client extends \Solarium_Client
      *
      * @param type $type
      * @param type $options
-     * @return Solarium_Query
+     * @return Solarium\Query
      */
     public function createQuery($type, $options = null)
     {

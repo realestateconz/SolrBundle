@@ -7,7 +7,7 @@
 
 namespace Realestate\SolrBundle\Bridge\Solarium\Query;
 
-class Update extends \Solarium_Query_Update
+class Update extends \Solarium\Query\Update
 {
     
     /**

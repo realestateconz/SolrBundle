@@ -7,7 +7,7 @@
 
 namespace Realestate\SolrBundle\Bridge\Solarium\Client;
 
-class Request extends \Solarium_Client_Request
+class Request extends \Solarium\Client\Request
 {
     protected $conten_type;
 
