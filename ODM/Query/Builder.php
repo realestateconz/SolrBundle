@@ -25,7 +25,9 @@ class Builder
 
     protected $_geoParts = array();
 
-    protected $_disMaxPart; // = array();
+    protected $_disMaxPart; 
+
+    protected $_facetPart; 
     
     protected $filterParts = array();
     
@@ -158,6 +160,21 @@ class Builder
         return $this;
     }
     
+	public function orWhere($expr)
+    {
+        if(!empty($this->filterParts)) {
+            $this->filterParts[] = ' OR ';
+        }
+        
+        if(!is_string($expr)) {
+            var_dump($expr);exit;
+        }
+        
+        $this->filterParts[] = '(' . $expr . ')';
+        
+        return $this;
+    }
+    
     public function filterBy($field, $expr)
     {
         $this->fieldParts[$field] = $expr;
@@ -227,6 +244,20 @@ class Builder
             $this->filterParts[] = '_query_:"{!geofilt}"';
         } 
 
+		// use for listing counts by region district suburb
+		if ($this->_facetPart) {
+			// TODO check facet field exists
+			$facetSet = $query->getFacetSet();
+
+			// otherwise we only get the first 100 facets back
+			$facetSet->setLimit(-1);
+
+			foreach ($this->_facetPart as $facet) {
+				$facetSet->createFacetField($facet)->setField($facet);
+			}
+		}
+
+
         // create a filterquery
         if(count($this->filterParts) > 0) {
             $fq = $query->createFilterQuery();
@@ -244,6 +275,14 @@ class Builder
             $query->addFilterQuery($fq);
         }
 
+		/* add custom fq??
+		$cq = $query->createFilterQuery(); //->setQuery('region_id:50');
+		$cq->setKey('cq');
+		$cq->setQuery('farms_region_id:50 OR residential_region_id:50 OR commercial_region_id:50 OR business_region_id:50');
+		$query->addFilterQuery($cq);
+		 * 
+		 */
+
         // set query
         $query->setQuery($this->renderQuery());
         
@@ -256,7 +295,7 @@ class Builder
         }
         
         $query->setFields($this->renderSelect());
-        
+
         return $query;
     }
     
@@ -266,8 +305,6 @@ class Builder
      */
     public function renderQuery()
     {
-
-		
         if(empty($this->queryParts)) {
 			
 			return $this->_queryParts['query'];
@@ -427,4 +464,7 @@ class Builder
         $this->_geoParts['distance'] = $distance;
     }
 
+    public function addFacetPart($string) {
+	$this->_facetPart = $string;
+    }
 }
