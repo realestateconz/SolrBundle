@@ -227,24 +227,6 @@ class Builder
             $this->filterParts[] = '_query_:"{!geofilt}"';
         } 
 
-		
-		if (count($this->_disMaxPart)) {
-
-			$dismax = $query->getDisMax();
-
-			// possible fields = title, description, search_address, search_extra
-
-			// new fields = search_address, search_extra
-
-			$dismax->setPhraseFields('search_address search_extra description');
-			$dismax->setQueryFields('listing_no^10 search_address^5 search_extra description');
-
-			// seems like a hack but...
-			$this->_queryParts['query'] = $this->_disMaxPart ;
-
-		}
-
-
         // create a filterquery
         if(count($this->filterParts) > 0) {
             $fq = $query->createFilterQuery();
@@ -445,7 +427,4 @@ class Builder
         $this->_geoParts['distance'] = $distance;
     }
 
-	public function addDismaxFilter($string) {
-		$this->_disMaxPart = $string;	
-	}
 }
